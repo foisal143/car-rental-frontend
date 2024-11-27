@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: auto;
+  max-width: 2280px;
+}
+
+.navlink li a.active {
+  color: #ff4c31;
+}
+
+.btn-primary {
+  @apply px-7 py-3  transition-all duration-200  text-white rounded bg-primary font-semibold font-heading hover:bg-transparent  hover:text-primary hover:border-primary border border-transparent;
+}
+
+.btn-secondary {
+  @apply px-7 py-3 text-white rounded bg-black hover:bg-transparent transition-all duration-200 hover:text-primary hover:border-primary border font-semibold font-heading;
+}

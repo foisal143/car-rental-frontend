@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Tesla Model 3",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAcJ4Uw1a_6gcaSJflu738qPwtuQSDZSeV9A&s",
+    "description": "A premium electric sedan with exceptional performance and range.",
+    "color": "Red",
+    "isElectric": true,
+    "status": "available",
+    "features": ["Autopilot", "Full Self-Driving", "Long Range Battery"],
+    "pricePerHour": 25,
+    "isDeleted": false
+  },
+
+  {
+    "name": "Ford Mustang",
+    "image": "https://www.vdm.ford.com/content/dam/na/ford/en_us/images/mustang/2025/jellybeans/Ford_Mustang_2025_101A_PYZ_882_89W_13A_CON_64F_99H_44U_EBST_DEFAULT_EXT_4.png",
+    "description": "A classic sports car delivering thrilling performance and style.",
+    "color": "Blue",
+    "isElectric": false,
+    "status": "unavailable",
+    "features": ["V8 Engine", "Leather Seats", "Premium Sound System"],
+    "pricePerHour": 40,
+    "isDeleted": false
+  },
+  {
+    "name": "Chevrolet Bolt EV",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiP9_5JZCycqn0pANVF7k5lMZrb6ehLRrsng&s",
+    "description": "A compact electric hatchback with impressive range and quick charging.",
+    "color": "Silver",
+    "isElectric": true,
+    "status": "available",
+    "features": ["Fast Charging", "Apple CarPlay", "Advanced Safety Features"],
+    "pricePerHour": 20,
+    "isDeleted": false
+  },
+  {
+    "name": "BMW X5",
+    "image": "https://cache.bmwusa.com/cosy.arox?pov=walkaround&brand=WBBM&vehicle=25XO&client=byoc&paint=P0300&fabric=FKPSW&sa=S01CE,S01SF,S0255,S02TB,S0302,S0319,S0322,S03AT,S03MB,S0402,S0420,S0423,S0459,S0481,S0494,S04FL,S04KR,S04T8,S04UR,S0552,S05AC,S05AS,S05DM,S0676,S06AC,S06AK,S06C4,S06CP,S06NX,S06U2,S0775&angle=30",
+    "description": "A luxury SUV offering comfort, performance, and advanced technology.",
+    "color": "Black",
+    "isElectric": false,
+    "status": "unavailable",
+    "features": ["Panoramic Sunroof", "Heated Seats", "Navigation System"],
+    "pricePerHour": 50,
+    "isDeleted": false
+  }
+]
