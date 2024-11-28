@@ -108,9 +108,13 @@ const Testimonial = () => {
                   <h3 className="text-xl font-semibold font-heading">
                     {item.name}
                   </h3>
-                  <p className="text-text">{item.designation}</p>
+                  <p className=" font-text font-semibold text-text">
+                    {item.designation}
+                  </p>
                 </div>
-                <p>{item.description.slice(0, 100)}</p>
+                <p className="font-text text-text">
+                  {item.description.slice(0, 100)}
+                </p>
                 <p>
                   {
                     // @ts-ignore

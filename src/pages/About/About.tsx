@@ -1,6 +1,7 @@
 import AboutBookRide from '../../components/about/AboutBookRide';
 import BookACar from '../../components/about/BookACar';
 import HowItWorks from '../../components/about/HowItWorks';
+import OurFleet from '../../components/about/OurFleet';
 import OurTem from '../../components/about/OurTem';
 import AboutSection from '../../components/home/AboutSection';
 import Testimonial from '../../components/home/Testimonial';
@@ -12,9 +13,11 @@ const About = () => {
         <AboutSection />
         <HowItWorks />
         <AboutBookRide />
-        <Testimonial />
-        <BookACar />
+        <OurFleet />
+
         <OurTem />
+        <BookACar />
+        <Testimonial />
       </div>
     </>
   );
