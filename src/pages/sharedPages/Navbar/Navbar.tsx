@@ -13,7 +13,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const [toggleMenu, setToggleMenu] = useState(false);
   const [sideMenu, setSideMenu] = useState(false);
-  const paths = [''];
+  const paths = ['/'];
   const { pathname } = useLocation();
   const reduxUser = useAppSelector(state => state.driveSecuireAuth.user);
   const { data } = useGetSingleUserQuery(reduxUser?.email);
@@ -41,7 +41,9 @@ const Navbar = () => {
       className={`fixed  w-full top-0 font-heading  z-50 transition-all duration-300 ${
         scrolled
           ? 'bg-white shadow-lg'
-          : `bg-transparent  ${paths.includes(pathname) && 'text-white'}`
+          : `${
+              paths.includes(pathname) ? 'bg-transparent ' : 'bg-white border-b'
+            }`
       } `}
     >
       <Container>

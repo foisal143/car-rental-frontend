@@ -5,6 +5,7 @@ import { useGetCarsQuery } from '../../Redux/features/car/carApis';
 import Container from '../container/Container';
 import CarsCard from '../home/CarsCard';
 import HeadingText from '../utils/HeadingText';
+import NotFound from '../NotFound';
 
 const CarsSection = () => {
   const [searchValue, setSearchValue] = useState('');
@@ -44,7 +45,7 @@ const CarsSection = () => {
             {cars && cars.map((car: TCar) => <CarsCard car={car} />)}
           </div>
         ) : (
-          <p>No Car Found</p>
+          <NotFound text="Cars not Found" />
         )}
         <div></div>
       </div>
