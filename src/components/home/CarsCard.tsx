@@ -7,7 +7,7 @@ const CarsCard = ({ car }: { car: TCar }) => {
 
   // Navigate to car details when the card is clicked
   const handleCardClick = () => {
-    navigate(`/cars/${_id}`);
+    navigate(`/services/cars/${_id}`);
   };
 
   // Navigate to checkout when the "Book Now" button is clicked

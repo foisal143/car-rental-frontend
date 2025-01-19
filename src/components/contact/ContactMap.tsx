@@ -16,7 +16,7 @@ type LatLngTuple = [number, number];
 const ContactMap = () => {
   const position: LatLngTuple = [37.7749, -122.4194];
   return (
-    <section className="pb-12">
+    <section className="">
       <div className="w-full  py-12 ">
         {/* Replace with actual Google Map Embed */}
         <div className="mt-12 rounded-lg overflow-hidden">

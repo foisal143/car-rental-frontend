@@ -18,7 +18,7 @@ const Navbar = () => {
   const reduxUser = useAppSelector(state => state.driveSecuireAuth.user);
   const { data } = useGetSingleUserQuery(reduxUser?.email);
   const user = data?.data;
-  console.log(user);
+
   // @ts-ignore
 
   useEffect(() => {
