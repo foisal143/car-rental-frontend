@@ -22,6 +22,15 @@ const bookingApis = baseApi.injectEndpoints({
         url: `/bookings/my-bookings`,
         method: 'GET',
       }),
+      providesTags: ['booking'],
+    }),
+    returnCar: builder.mutation({
+      query: returnInfo => ({
+        url: `/bookings/return`,
+        method: 'PUT',
+        body: returnInfo,
+      }),
+      invalidatesTags: ['booking'],
     }),
   }),
 });
@@ -30,4 +39,5 @@ export const {
   useGetAllbookingsQuery,
   useCreateBookingsMutation,
   useGetUserBookingsQuery,
+  useReturnCarMutation,
 } = bookingApis;

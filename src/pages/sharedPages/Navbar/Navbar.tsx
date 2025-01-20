@@ -36,6 +36,10 @@ const Navbar = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    setSideMenu(false);
+  }, [pathname]);
   return (
     <nav
       className={`fixed  w-full top-0 font-heading  z-50 transition-all duration-300 ${
@@ -127,9 +131,18 @@ const Navbar = () => {
                 >
                   <div>
                     <ul className="text-center text-xl space-y-4">
-                      <li>Home</li>
-                      <li>About</li>
-                      <li>Contact</li>
+                      <li>
+                        <NavLink to={'/'}>Home</NavLink>
+                      </li>
+                      <li>
+                        <NavLink to={'/about'}>About</NavLink>
+                      </li>
+                      <li>
+                        <NavLink to={'/services'}>Cars</NavLink>
+                      </li>
+                      <li>
+                        <NavLink to={'/contact'}>Contact Us</NavLink>
+                      </li>
                       <li>
                         <button
                           onClick={() => dispatch(logout())}
