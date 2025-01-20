@@ -11,7 +11,7 @@ import NotFound from '../../../../components/NotFound';
 const MyBookings = () => {
   const { data: bookingRes } = useGetUserBookingsQuery(undefined);
   const bookingData = bookingRes?.data;
-  const [returnCar, { data: returnCarRes }] = useReturnCarMutation();
+  const [returnCar] = useReturnCarMutation();
   const handlerReturnCar = (item: TBooking) => {
     const returnData = {
       bookingId: item._id,

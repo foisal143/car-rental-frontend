@@ -1,5 +1,6 @@
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import { useAppSelector } from '../Redux/hooks/hooks';
+import { FaBars } from 'react-icons/fa';
 
 const DashboardLayouts = () => {
   const user = useAppSelector(state => state.driveSecuireAuth.user);
@@ -33,42 +34,56 @@ const DashboardLayouts = () => {
     </>
   );
   return (
-    <div className="drawer lg:drawer-open">
-      <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content ">
+    <>
+      {' '}
+      <div className=" px-5 text-white bg-primary flex justify-between items-center w-full h-full drawer-button lg:hidden">
+        {' '}
         <div>
-          <Outlet />
+          {' '}
+          <img
+            className="w-14 h-14 rounded-full"
+            src="/public/drivesecuire-logo.png"
+            alt="logo"
+          />{' '}
+          <h3 className="text-3xl font-bold">DriveSecuire</h3>
         </div>
-        <label
-          htmlFor="my-drawer-2"
-          className="btn btn-primary drawer-button lg:hidden"
-        >
-          Open drawer
+        <label htmlFor="my-drawer-2">
+          {' '}
+          <FaBars />
         </label>
       </div>
-      <div className="drawer-side">
-        <label
-          htmlFor="my-drawer-2"
-          aria-label="close sidebar"
-          className="drawer-overlay"
-        ></label>
+      <div className="drawer lg:drawer-open">
+        <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
 
-        <ul className="  menu font-text bg-primary text-white min-h-full w-80 p-4">
-          {/* Sidebar content here */}
-          <li className="mb-4">
-            <Link className="flex items-center gap-2" to="/">
-              <img
-                className="w-14 h-14 rounded-full"
-                src="/public/drivesecuire-logo.png"
-                alt="logo"
-              />{' '}
-              <h3 className="text-3xl font-bold">DriveSecuire</h3>
-            </Link>
-          </li>
-          {user?.role === 'user' ? userLinks : adminLinks}
-        </ul>
+        <div className="drawer-content ">
+          <div>
+            <Outlet />
+          </div>
+        </div>
+        <div className="drawer-side">
+          <label
+            htmlFor="my-drawer-2"
+            aria-label="close sidebar"
+            className="drawer-overlay"
+          ></label>
+
+          <ul className="  menu font-text bg-primary text-white min-h-full w-80 p-4">
+            {/* Sidebar content here */}
+            <li className="mb-4">
+              <Link className="flex items-center gap-2" to="/">
+                <img
+                  className="w-14 h-14 rounded-full"
+                  src="/public/drivesecuire-logo.png"
+                  alt="logo"
+                />{' '}
+                <h3 className="text-3xl font-bold">DriveSecuire</h3>
+              </Link>
+            </li>
+            {user?.role === 'user' ? userLinks : adminLinks}
+          </ul>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

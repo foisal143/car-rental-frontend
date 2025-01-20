@@ -14,7 +14,7 @@ const ProfileInfo = () => {
   const userUpdated = moment(updatedAt).format('MMMM Do YYYY');
   const dispatch = useAppDispatch();
   return (
-    <div className=" lg:w-1/3 gap-10 border p-5 shadow-md min-h-screen justify-center ">
+    <div className=" lg:w-full gap-10 border p-5 shadow-md lg:min-h-screen justify-center ">
       <div className=" mx-auto w-[200px] h-[200px] overflow-hidden rounded-full bg-primary p-1">
         <img
           className="w-full rounded-full  mx-auto h-full"

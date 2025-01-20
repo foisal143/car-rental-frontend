@@ -61,7 +61,9 @@ const UserHome = () => {
           <HistoryChart data={data} />
         </div>
       </div>
-      <ProfileInfo />
+      <div className="lg:w-1/3">
+        <ProfileInfo />
+      </div>
     </div>
   );
 };
