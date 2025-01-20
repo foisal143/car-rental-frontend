@@ -2,6 +2,8 @@ import moment from 'moment';
 import { useGetSingleUserQuery } from '../../../Redux/features/user/userApis';
 import { useAppDispatch, useAppSelector } from '../../../Redux/hooks/hooks';
 import { logout } from '../../../Redux/features/auth/authSlice';
+import { FaEdit } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 const ProfileInfo = () => {
   const userLoacl = useAppSelector(state => state.driveSecuireAuth.user);
   const userRes = useGetSingleUserQuery(userLoacl.email);
@@ -13,7 +15,7 @@ const ProfileInfo = () => {
   const dispatch = useAppDispatch();
   return (
     <div className=" lg:w-1/3 gap-10 border p-5 shadow-md min-h-screen justify-center ">
-      <div className=" mx-auto w-[200px] h-[200px] overflow-hidden rounded-full bg-red-100 p-2">
+      <div className=" mx-auto w-[200px] h-[200px] overflow-hidden rounded-full bg-primary p-1">
         <img
           className="w-full rounded-full  mx-auto h-full"
           src={image}
@@ -42,13 +44,15 @@ const ProfileInfo = () => {
         <p>
           <strong>Last Updated At:</strong> {userUpdated}
         </p>
-        <p>
-          <button
-            onClick={() => dispatch(logout())}
-            className="btn-primary mt-3"
-          >
+        <p className="flex justify-center gap-3 pt-3 items-center">
+          <button onClick={() => dispatch(logout())} className="btn-primary ">
             Logout
-          </button>
+          </button>{' '}
+          <Link to={`/dashboard/user-home/edit`}>
+            <button className="flex items-center btn-secondary">
+              <FaEdit /> Edit
+            </button>
+          </Link>
         </p>
       </div>
     </div>

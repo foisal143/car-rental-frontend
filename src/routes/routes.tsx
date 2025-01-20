@@ -12,11 +12,14 @@ import DashboardLayouts from '../layouts/DashboardLayouts';
 import UserHome from '../pages/Dashboard/User/UserHome/UserHome';
 import MyBookings from '../pages/Dashboard/User/MyBookings/MyBookings';
 import PaymentHistory from '../pages/Dashboard/User/PaymentHistory/PaymentHistory';
+import ErrorPage from '../components/Error/ErrorPage';
+import EditProfile from '../pages/Dashboard/User/EditProfile/EditProfile';
 
 const route = createBrowserRouter([
   {
     path: '/',
     element: <MainLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: '/',
@@ -73,6 +76,10 @@ const route = createBrowserRouter([
       {
         path: '/dashboard/pay-history',
         element: <PaymentHistory />,
+      },
+      {
+        path: '/dashboard/user-home/edit',
+        element: <EditProfile />,
       },
     ],
   },

@@ -13,80 +13,83 @@ const MyBookings = () => {
   const bookingData = bookingRes?.data;
   const [returnCar, { data: returnCarRes }] = useReturnCarMutation();
   const handlerReturnCar = (item: TBooking) => {
-    console.log(item);
     const returnData = {
       bookingId: item._id,
       endTime: item.endTime,
     };
     returnCar(returnData);
   };
-  console.log(returnCarRes);
+  console.log(bookingData);
   return (
-    <div className="p-5">
-      <HeadingText text="My Bookings" />
+    <div>
       {bookingData && bookingData?.length > 0 ? (
-        <div className="overflow-x-auto mt-5">
-          <table className="table table-zebra">
-            {/* head */}
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Status</th>
-                <th>Pay status</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {/* row 1 */}
-              {bookingData &&
-                bookingData.map((item: TBooking) => (
-                  <tr key={item?._id}>
-                    <td>{item?.car?.name}</td>
-                    <td>${item?.car?.pricePerHour}/h</td>
-                    <td
-                      className={`${
-                        item.status === 'approved'
-                          ? 'text-green-500'
-                          : 'text-red-500'
-                      }`}
-                    >
-                      {item?.status}
-                    </td>
-                    <td
-                      className={`${
-                        item.payStatus === 'paid'
-                          ? 'text-green-500'
-                          : 'text-red-500'
-                      }`}
-                    >
-                      {item?.payStatus}
-                    </td>
-                    <td>
-                      {item.payStatus === 'paid' ? (
-                        <button
-                          onClick={() => handlerReturnCar(item)}
-                          title="Return Car"
-                          className="bg-green-200 p-2 rounded-md"
-                        >
-                          <GiReturnArrow />
-                        </button>
-                      ) : (
-                        <button
-                          title="Please Pay"
-                          className="bg-green-200 p-2 rounded-md"
-                        >
-                          <FaCcAmazonPay />
-                        </button>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
+        <div className="p-5">
+          <HeadingText text="My Bookings" />
+          <div className="overflow-x-auto mt-5">
+            <table className="table table-zebra">
+              {/* head */}
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th>Status</th>
+                  <th>Pay status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {/* row 1 */}
+                {bookingData &&
+                  bookingData.map((item: TBooking) => (
+                    <tr key={item?._id}>
+                      <td>{item?.car?.name}</td>
+                      <td>${item?.car?.pricePerHour}/h</td>
+                      <td
+                        className={`${
+                          item.status === 'approved'
+                            ? 'text-green-500'
+                            : 'text-red-500'
+                        }`}
+                      >
+                        {item?.status}
+                      </td>
+                      <td
+                        className={`${
+                          item.payStatus === 'paid'
+                            ? 'text-green-500'
+                            : 'text-red-500'
+                        }`}
+                      >
+                        {item?.payStatus}
+                      </td>
+                      <td>
+                        {item.payStatus === 'paid' ? (
+                          <button
+                            onClick={() => handlerReturnCar(item)}
+                            title="Return Car"
+                            className="bg-green-200 p-2 rounded-md"
+                          >
+                            <GiReturnArrow />
+                          </button>
+                        ) : (
+                          <button
+                            title="Please Pay"
+                            className="bg-green-200 p-2 rounded-md"
+                          >
+                            <FaCcAmazonPay />
+                          </button>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       ) : (
-        <NotFound text="Booking not found" />
+        <div className="min-h-screen flex justify-center items-center">
+          <NotFound text="Booking not found" />
+        </div>
       )}
     </div>
   );
