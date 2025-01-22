@@ -7,11 +7,13 @@ import {
 import { FaCcAmazonPay } from 'react-icons/fa';
 import { TBooking } from '../../../../interface/bookings';
 import NotFound from '../../../../components/NotFound';
+import { useEffect } from 'react';
+import toast from 'react-hot-toast';
 
 const MyBookings = () => {
   const { data: bookingRes } = useGetUserBookingsQuery(undefined);
   const bookingData = bookingRes?.data;
-  const [returnCar] = useReturnCarMutation();
+  const [returnCar, { data: returnRes, error }] = useReturnCarMutation();
   const handlerReturnCar = (item: TBooking) => {
     const returnData = {
       bookingId: item._id,
@@ -19,7 +21,19 @@ const MyBookings = () => {
     };
     returnCar(returnData);
   };
-  console.log(bookingData);
+
+  useEffect(() => {
+    if (returnRes?.success) {
+      console.log(returnRes);
+      toast.success(returnRes?.message);
+    }
+    if (!returnRes?.success && error) {
+      console.log(error);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      toast.error(error?.data?.message);
+    }
+  }, [returnRes, error]);
   return (
     <div>
       {bookingData && bookingData?.length > 0 ? (

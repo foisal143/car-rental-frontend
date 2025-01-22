@@ -1,6 +1,4 @@
-import { GiReturnArrow } from 'react-icons/gi';
 import NotFound from '../../../../components/NotFound';
-import { FaCcAmazonPay } from 'react-icons/fa';
 import HeadingText from '../../../../components/utils/HeadingText';
 import { useGetUserBookingsQuery } from '../../../../Redux/features/bookings/bookingsapis';
 import { TBooking } from '../../../../interface/bookings';
@@ -24,7 +22,6 @@ const PaymentHistory = () => {
                   <th>Price</th>
                   <th>Tranjaction Id</th>
                   <th>Date</th>
-                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -38,24 +35,6 @@ const PaymentHistory = () => {
                         {item?.tranjactionId}
                       </td>
                       <td>{moment(item?.date).format('L')}</td>
-                      <td>
-                        {item.payStatus === 'paid' ? (
-                          <button
-                            // onClick={() => handlerReturnCar(item)}
-                            title="Return Car"
-                            className="bg-green-200 p-2 rounded-md"
-                          >
-                            <GiReturnArrow />
-                          </button>
-                        ) : (
-                          <button
-                            title="Please Pay"
-                            className="bg-green-200 p-2 rounded-md"
-                          >
-                            <FaCcAmazonPay />
-                          </button>
-                        )}
-                      </td>
                     </tr>
                   ))}
               </tbody>

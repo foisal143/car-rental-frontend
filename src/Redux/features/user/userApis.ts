@@ -9,7 +9,15 @@ const userApis = baseApi.injectEndpoints({
       }),
       providesTags: ['user'],
     }),
+    updateUser: builder.mutation({
+      query: payload => ({
+        url: `/users/${payload.email}`,
+        method: 'PATCH',
+        body: payload.userInfo,
+      }),
+      invalidatesTags: ['user'],
+    }),
   }),
 });
 
-export const { useGetSingleUserQuery } = userApis;
+export const { useGetSingleUserQuery, useUpdateUserMutation } = userApis;

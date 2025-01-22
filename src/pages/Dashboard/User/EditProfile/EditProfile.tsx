@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useAppSelector } from '../../../../Redux/hooks/hooks';
-import { useGetSingleUserQuery } from '../../../../Redux/features/user/userApis';
+import {
+  useGetSingleUserQuery,
+  useUpdateUserMutation,
+} from '../../../../Redux/features/user/userApis';
 import ProfileInfo from '../../../../components/dashboard/user/ProfileInfo';
 
 type Role = 'admin' | 'user' | 'moderator'; // Define possible roles
@@ -18,7 +21,7 @@ const EditProfile = () => {
   const { email } = useAppSelector(state => state.driveSecuireAuth.user);
   const userRes = useGetSingleUserQuery(email);
   const user = userRes?.data?.data;
-
+  const [updateUser, { data: userUpRes }] = useUpdateUserMutation();
   const {
     register,
     handleSubmit,
@@ -66,6 +69,7 @@ const EditProfile = () => {
   };
   const onSubmit: SubmitHandler<FormData> = data => {
     console.log(data);
+    updateUser({ email: user.email, userInfo: { ...data } });
   };
 
   useEffect(() => {
@@ -82,11 +86,8 @@ const EditProfile = () => {
   }, [user, reset]); // Reset the form whenever `user` changes
 
   return (
-    <div className="min-h-screen lg:flex  items-center">
+    <div className="min-h-screen mt-8 lg:mt-0 flex flex-col-reverse lg:flex-row   items-center">
       {' '}
-      <div className="lg:w-1/3 ">
-        <ProfileInfo />
-      </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="space-y-4 p-4 lg:w-1/2 mx-auto"
@@ -184,6 +185,9 @@ const EditProfile = () => {
           Submit
         </button>
       </form>
+      <div className="lg:w-1/3 ">
+        <ProfileInfo />
+      </div>
     </div>
   );
 };

@@ -15,6 +15,15 @@ const DashboardLayouts = () => {
       <li>
         <NavLink to="/dashboard/pay-history">Payment History</NavLink>
       </li>
+      <li>
+        <NavLink to="/services">Let book a car</NavLink>
+      </li>
+      <li>
+        <NavLink to="/about">Explore us</NavLink>
+      </li>
+      <li>
+        <NavLink to="/contact">Contact us</NavLink>
+      </li>
     </>
   );
   const adminLinks = (
@@ -36,9 +45,9 @@ const DashboardLayouts = () => {
   return (
     <>
       {' '}
-      <div className=" px-5 text-white bg-primary flex justify-between items-center w-full h-full drawer-button lg:hidden">
+      <div className=" px-5 py-3 text-white bg-primary flex justify-between items-center w-full h-full drawer-button lg:hidden">
         {' '}
-        <div>
+        <div className="flex items-center gap-2">
           {' '}
           <img
             className="w-14 h-14 rounded-full"
@@ -47,7 +56,7 @@ const DashboardLayouts = () => {
           />{' '}
           <h3 className="text-3xl font-bold">DriveSecuire</h3>
         </div>
-        <label htmlFor="my-drawer-2">
+        <label htmlFor="my-drawer-2" className="text-3xl">
           {' '}
           <FaBars />
         </label>
