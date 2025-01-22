@@ -9,10 +9,12 @@ import { TBooking } from '../../../../interface/bookings';
 import NotFound from '../../../../components/NotFound';
 import { useEffect } from 'react';
 import toast from 'react-hot-toast';
+import { useMakePaymentMutation } from '../../../../Redux/features/payment/paymentApis';
 
 const MyBookings = () => {
   const { data: bookingRes } = useGetUserBookingsQuery(undefined);
   const bookingData = bookingRes?.data;
+  const [makePayment, { data: paymentRes }] = useMakePaymentMutation();
   const [returnCar, { data: returnRes, error }] = useReturnCarMutation();
   const handlerReturnCar = (item: TBooking) => {
     const returnData = {
@@ -22,13 +24,26 @@ const MyBookings = () => {
     returnCar(returnData);
   };
 
+  const handlerMakePayment = (item: TBooking) => {
+    console.log(item);
+    makePayment(item);
+  };
+  useEffect(() => {
+    if (paymentRes?.success) {
+      window.open(`${paymentRes?.data?.payment_url}`, '_blank');
+    }
+    if (error) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      toast.error(error?.data?.message as string);
+      console.log(error);
+    }
+  }, [paymentRes, error]);
   useEffect(() => {
     if (returnRes?.success) {
-      console.log(returnRes);
       toast.success(returnRes?.message);
     }
     if (!returnRes?.success && error) {
-      console.log(error);
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       toast.error(error?.data?.message);
@@ -87,6 +102,7 @@ const MyBookings = () => {
                           </button>
                         ) : (
                           <button
+                            onClick={() => handlerMakePayment(item)}
                             title="Please Pay"
                             className="bg-green-200 p-2 rounded-md"
                           >
