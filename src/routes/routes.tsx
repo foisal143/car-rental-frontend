@@ -14,6 +14,11 @@ import MyBookings from '../pages/Dashboard/User/MyBookings/MyBookings';
 import PaymentHistory from '../pages/Dashboard/User/PaymentHistory/PaymentHistory';
 import ErrorPage from '../components/Error/ErrorPage';
 import EditProfile from '../pages/Dashboard/User/EditProfile/EditProfile';
+import AdminHome from '../pages/Dashboard/Admin/AdminHome/AdminHome';
+import ManageUser from '../pages/Dashboard/Admin/ManageUser/ManageUser';
+import ManageBooking from '../pages/Dashboard/Admin/ManageBooking/ManageBooking';
+import ManageCars from '../pages/Dashboard/Admin/ManageCars/ManageCars';
+import AddCar from '../pages/Dashboard/Admin/AddCar/AddCar';
 
 const route = createBrowserRouter([
   {
@@ -80,6 +85,27 @@ const route = createBrowserRouter([
       {
         path: '/dashboard/user-home/edit',
         element: <EditProfile />,
+      },
+      // admin routes
+      {
+        path: '/dashboard/admin-home',
+        element: <AdminHome />,
+      },
+      {
+        path: '/dashboard/manage-users',
+        element: <ManageUser />,
+      },
+      {
+        path: '/dashboard/manage-bookings',
+        element: <ManageBooking />,
+      },
+      {
+        path: '/dashboard/manage-cars',
+        element: <ManageCars />,
+      },
+      {
+        path: '/dashboard/add-car',
+        element: <AddCar />,
       },
     ],
   },

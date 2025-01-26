@@ -40,6 +40,9 @@ const DashboardLayouts = () => {
       <li>
         <NavLink to="/dashboard/manage-users">Manage Users</NavLink>
       </li>
+      <li>
+        <NavLink to="/dashboard/add-car">Add Car</NavLink>
+      </li>
     </>
   );
   return (
