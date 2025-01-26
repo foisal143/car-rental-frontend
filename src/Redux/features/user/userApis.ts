@@ -9,6 +9,13 @@ const userApis = baseApi.injectEndpoints({
       }),
       providesTags: ['user'],
     }),
+    getAllUser: builder.query({
+      query: () => ({
+        url: `/users`,
+        method: 'GET',
+      }),
+      providesTags: ['user'],
+    }),
     updateUser: builder.mutation({
       query: payload => ({
         url: `/users/${payload.email}`,
@@ -20,4 +27,8 @@ const userApis = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetSingleUserQuery, useUpdateUserMutation } = userApis;
+export const {
+  useGetSingleUserQuery,
+  useUpdateUserMutation,
+  useGetAllUserQuery,
+} = userApis;

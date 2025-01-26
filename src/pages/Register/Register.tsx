@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import { useCreateUserMutation } from '../../Redux/features/auth/authApis';
 
 export interface TUser {
+  _id: string;
   name: string;
   email: string;
   role?: 'user' | 'admin';
