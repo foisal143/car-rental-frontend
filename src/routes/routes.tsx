@@ -19,6 +19,8 @@ import ManageUser from '../pages/Dashboard/Admin/ManageUser/ManageUser';
 import ManageBooking from '../pages/Dashboard/Admin/ManageBooking/ManageBooking';
 import ManageCars from '../pages/Dashboard/Admin/ManageCars/ManageCars';
 import AddCar from '../pages/Dashboard/Admin/AddCar/AddCar';
+import UserRoute from '../PrivateRoute/User/UserRoute';
+import AdminRoute from '../PrivateRoute/admin/AdminRoute';
 
 const route = createBrowserRouter([
   {
@@ -72,40 +74,76 @@ const route = createBrowserRouter([
     children: [
       {
         path: '/dashboard/user-home',
-        element: <UserHome />,
+        element: (
+          <UserRoute>
+            <UserHome />
+          </UserRoute>
+        ),
       },
       {
         path: '/dashboard/my-bookings',
-        element: <MyBookings />,
+        element: (
+          <UserRoute>
+            <MyBookings />
+          </UserRoute>
+        ),
       },
       {
         path: '/dashboard/pay-history',
-        element: <PaymentHistory />,
+        element: (
+          <UserRoute>
+            <PaymentHistory />
+          </UserRoute>
+        ),
       },
       {
         path: '/dashboard/user-home/edit',
-        element: <EditProfile />,
+        element: (
+          <UserRoute>
+            <EditProfile />
+          </UserRoute>
+        ),
       },
       // admin routes
       {
         path: '/dashboard/admin-home',
-        element: <AdminHome />,
+        element: (
+          <AdminRoute>
+            <AdminHome />
+          </AdminRoute>
+        ),
       },
       {
         path: '/dashboard/manage-users',
-        element: <ManageUser />,
+        element: (
+          <AdminRoute>
+            <ManageUser />
+          </AdminRoute>
+        ),
       },
       {
         path: '/dashboard/manage-bookings',
-        element: <ManageBooking />,
+        element: (
+          <AdminRoute>
+            <ManageBooking />
+          </AdminRoute>
+        ),
       },
       {
         path: '/dashboard/manage-cars',
-        element: <ManageCars />,
+        element: (
+          <AdminRoute>
+            <ManageCars />
+          </AdminRoute>
+        ),
       },
       {
         path: '/dashboard/add-car',
-        element: <AddCar />,
+        element: (
+          <AdminRoute>
+            <AddCar />
+          </AdminRoute>
+        ),
       },
     ],
   },
