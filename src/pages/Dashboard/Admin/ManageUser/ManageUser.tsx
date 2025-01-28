@@ -10,7 +10,7 @@ const ManageUser = () => {
   return (
     <div className="p-5">
       <HeadingText text="Manage Users" />
-      <div className="overflow-x-auto mt-5">
+      <div className="overflow-x-auto mt-5 font-text">
         <table className="table">
           {/* head */}
           <thead>

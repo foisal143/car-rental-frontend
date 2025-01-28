@@ -17,7 +17,6 @@ const CarsSection = () => {
     // @ts-ignore
     const search = e.target.search.value;
     setSearchValue(search);
-    console.log(carsData);
   };
 
   useEffect(() => {
