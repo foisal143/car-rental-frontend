@@ -18,6 +18,21 @@ const carApis = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['cars'],
     }),
+    updateCar: builder.mutation({
+      query: payload => ({
+        url: `/cars/${payload?.id}`,
+        method: 'PUT',
+        body: payload.carsInfo,
+      }),
+      invalidatesTags: ['cars'],
+    }),
+    deleteCar: builder.mutation({
+      query: id => ({
+        url: `/cars/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['cars'],
+    }),
   }),
 });
 
