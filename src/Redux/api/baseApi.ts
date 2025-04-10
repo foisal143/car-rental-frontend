@@ -4,7 +4,7 @@ import { RootState } from '../store/store';
 const baseApi = createApi({
   reducerPath: 'driveSecuire',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:5000/api',
+    baseUrl: 'https://drive-secuire-server.vercel.app/api',
     credentials: 'include',
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).driveSecuireAuth.token;

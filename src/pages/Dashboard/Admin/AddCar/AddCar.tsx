@@ -38,7 +38,7 @@ const AddCar = () => {
 
     try {
       const response = await axios.post(
-        `https://api.imgbb.com/1/upload?key=YOUR_IMGBB_API_KEY`,
+        `https://api.imgbb.com/1/upload?key=2c0d4b053df8382e3fea05ec0c310e31`, // Replace with your Imgbb API key
         formData
       );
       const imageUrl = response.data.data.url;
@@ -49,7 +49,7 @@ const AddCar = () => {
       setUploading(false);
     }
   };
-
+  console.log(isElectric);
   return (
     <div className="p-8">
       <form
@@ -136,14 +136,17 @@ const AddCar = () => {
             <label className="block font-medium">Electric</label>
             <div className="flex space-x-4 mt-2">
               {/* Yes Option */}
-              <label className="flex items-center cursor-pointer space-x-2 px-3 py-2 rounded-md border border-gray-300 hover:bg-blue-50 transition">
+              <label
+                onClick={() => setIsElectric(true)}
+                className="flex items-center cursor-pointer space-x-2 px-3 py-2 rounded-md border border-gray-300 hover:bg-blue-50 transition"
+              >
                 <input
                   type="radio"
-                  value="true" // Set the value for "Yes"
+                  value={`${isElectric}`} // Set the value for "Yes"
                   {...register('isElectric', {
                     required: 'Please select if the car is electric',
                   })}
-                  className=""
+                  className="hidden"
                 />
                 <div className="w-4 h-4 border-2 border-[#ff4c31] rounded-full flex items-center justify-center">
                   {isElectric && (
@@ -154,14 +157,17 @@ const AddCar = () => {
               </label>
 
               {/* No Option */}
-              <label className="flex items-center cursor-pointer space-x-2 px-3 py-2 rounded-md border border-gray-300 hover:bg-blue-50 transition">
+              <label
+                onClick={() => setIsElectric(false)}
+                className="flex items-center cursor-pointer space-x-2 px-3 py-2 rounded-md border border-gray-300 hover:bg-blue-50 transition"
+              >
                 <input
                   type="radio"
-                  value="false" // Set the value for "No"
+                  value={`${!isElectric}`} // Set the value for "No"
                   {...register('isElectric', {
                     required: 'Please select if the car is electric',
                   })}
-                  className=""
+                  className="hidden"
                 />
                 <div className="w-4 h-4 border-2 border-[#ff4c31] rounded-full flex items-center justify-center">
                   {isElectric === false && (

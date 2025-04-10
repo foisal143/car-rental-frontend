@@ -3,7 +3,7 @@ import HistoryChart from '../../../../components/dashboard/user/HistoryChart';
 import ProfileInfo from '../../../../components/dashboard/user/ProfileInfo';
 import { TBooking } from '../../../../interface/bookings';
 import { TCar } from '../../../../interface/cars';
-import { useGetUserBookingsQuery } from '../../../../Redux/features/bookings/bookingsapis';
+import { useGetAllbookingsQuery } from '../../../../Redux/features/bookings/bookingsapis';
 import { useGetCarsQuery } from '../../../../Redux/features/car/carApis';
 import { formatLength } from '../../../../utils/formateLength';
 
@@ -28,7 +28,7 @@ const AdminHome = () => {
       amt: 2290,
     },
   ];
-  const { data: bookingRes } = useGetUserBookingsQuery(undefined);
+  const { data: bookingRes } = useGetAllbookingsQuery(undefined);
   const totalBooking = bookingRes?.data;
   const paidBooking = totalBooking?.filter(
     (item: TBooking) => item.payStatus === 'paid'
