@@ -3,9 +3,15 @@ import { TCar } from '../../../interface/cars';
 import { useDeleteCarMutation } from '../../../Redux/features/car/carApis';
 import 'sweetalert2/src/sweetalert2.scss';
 import Swal from 'sweetalert2';
-import { useEffect } from 'react';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 
-const ManageCarsRow = ({ car }: { car: TCar }) => {
+const ManageCarsRow = ({
+  car,
+  setCarInfo,
+}: {
+  car: TCar;
+  setCarInfo: Dispatch<SetStateAction<TCar>>;
+}) => {
   const [deleteCar, { data: deleteInfo }] = useDeleteCarMutation();
   const handlerDeleteCar = (id: string) => {
     console.log(id);
@@ -56,7 +62,15 @@ const ManageCarsRow = ({ car }: { car: TCar }) => {
 
       <td className="text-primary">${car?.pricePerHour}</td>
       <td className="flex gap-2 items-center">
-        <button className="btn-secondary">
+        <button
+          onClick={() => {
+            (document.getElementById(
+              'my_modal_3'
+            ) as HTMLDialogElement)!.showModal();
+            setCarInfo(car);
+          }}
+          className="btn-secondary"
+        >
           <FaEdit />{' '}
         </button>
         <button
