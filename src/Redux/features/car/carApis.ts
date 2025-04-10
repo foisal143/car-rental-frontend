@@ -22,7 +22,7 @@ const carApis = baseApi.injectEndpoints({
       query: payload => ({
         url: `/cars/${payload?.id}`,
         method: 'PUT',
-        body: payload.carsInfo,
+        body: payload.carInfo,
       }),
       invalidatesTags: ['cars'],
     }),

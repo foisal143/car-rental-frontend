@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import Loading from '../../utils/Loading';
+import { useUpdateCarMutation } from '../../Redux/features/car/carApis';
 
 export type TCar = {
+  _id: string;
   name: string;
   image: string;
   description: string;
@@ -21,40 +23,26 @@ const CarsDetailsModal = ({ carsInfo }: { carsInfo: TCar }) => {
 
     formState: { errors },
   } = useForm<TCar>();
-
+  const [updateCar, { data: carRes }] = useUpdateCarMutation();
   const [loading, setLoading] = useState(false);
 
   //  add car eventhandler
   const onSubmit: SubmitHandler<TCar> = async data => {
     console.log(data);
+    setLoading(true);
+    const updateCarDetails = { id: carsInfo._id, carInfo: { ...data } };
+    try {
+      updateCar(updateCarDetails);
+      console.log(updateCarDetails);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
     reset();
   };
 
-  // // image upload to imgbb
-  // const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setLoading(true);
-  //   const file = e.target.files?.[0];
-  //   if (!file) return;
-
-  //   setUploading(true);
-  //   const formData = new FormData();
-  //   formData.append('image', file);
-
-  //   try {
-  //     const response = await axios.post(
-  //       `https://api.imgbb.com/1/upload?key=2c0d4b053df8382e3fea05ec0c310e31`, // Replace with your Imgbb API key
-  //       formData
-  //     );
-  //     const imageUrl = response.data.data.url;
-  //     setValue('image', imageUrl); // Set the image URL in the form
-  //     setLoading(false);
-  //   } catch (error) {
-  //     console.error('Image upload failed:', error);
-  //     setLoading(false);
-  //   } finally {
-  //     setUploading(false);
-  //   }
-  // };
+  console.log(carRes);
 
   return (
     <div className="w-full  mx-auto">
@@ -82,7 +70,7 @@ const CarsDetailsModal = ({ carsInfo }: { carsInfo: TCar }) => {
                     placeholder="Enter your name"
                     id="name"
                     defaultValue={carsInfo?.name}
-                    {...register('name', { required: 'Car name is required' })}
+                    {...register('name')}
                     className="border border-gray-300 rounded px-3 py-2 w-full"
                   />
                   {errors.name && (
@@ -105,9 +93,7 @@ const CarsDetailsModal = ({ carsInfo }: { carsInfo: TCar }) => {
                     defaultValue={carsInfo?.description}
                     placeholder="Enter car description"
                     id="description"
-                    {...register('description', {
-                      required: 'Description is required',
-                    })}
+                    {...register('description')}
                     className="border border-gray-300 rounded px-3 py-2 w-full"
                   />
                   {errors.description && (
@@ -126,7 +112,7 @@ const CarsDetailsModal = ({ carsInfo }: { carsInfo: TCar }) => {
                     defaultValue={carsInfo?.color}
                     placeholder="Enter car color"
                     id="color"
-                    {...register('color', { required: 'Color is required' })}
+                    {...register('color')}
                     className="border border-gray-300 rounded px-3 py-2 w-full"
                   />
                   {errors.color && (
@@ -204,10 +190,7 @@ const CarsDetailsModal = ({ carsInfo }: { carsInfo: TCar }) => {
                   id="pricePerHour"
                   placeholder="Enter car price"
                   type="number"
-                  {...register('pricePerHour', {
-                    required: 'Price per hour is required',
-                    min: 1,
-                  })}
+                  {...register('pricePerHour')}
                   className="border border-gray-300 rounded px-3 py-2 w-full"
                 />
                 {errors.pricePerHour && (
