@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useCreateCarMutation } from '../../../../Redux/features/car/carApis';
+import Loading from '../../../../utils/Loading';
 
 type CarFormData = {
   name: string;
@@ -10,7 +12,7 @@ type CarFormData = {
   isElectric: boolean;
   status?: 'available' | 'unavailable';
   features: string[];
-  pricePerHour: number;
+  pricePerHour: string;
   isDeleted?: boolean;
 };
 const AddCar = () => {
@@ -23,12 +25,27 @@ const AddCar = () => {
   } = useForm<CarFormData>();
   const [uploading, setUploading] = useState(false);
   const [isElectric, setIsElectric] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [createCar, { data: carRes }] = useCreateCarMutation();
+  //  add car eventhandler
   const onSubmit: SubmitHandler<CarFormData> = async data => {
-    console.log(data);
+    const price = parseFloat(data.pricePerHour);
+    setLoading(true);
+    const carsInfo = {
+      ...data,
+      isDeleted: false,
+      pricePerHour: price,
+      isElectric,
+    };
+    console.log(carsInfo);
+    createCar(carsInfo);
+    setLoading(false);
     reset();
   };
-
+  console.log(carRes);
+  // image upload to imgbb
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLoading(true);
     const file = e.target.files?.[0];
     if (!file) return;
 
@@ -43,13 +60,15 @@ const AddCar = () => {
       );
       const imageUrl = response.data.data.url;
       setValue('image', imageUrl); // Set the image URL in the form
+      setLoading(false);
     } catch (error) {
       console.error('Image upload failed:', error);
+      setLoading(false);
     } finally {
       setUploading(false);
     }
   };
-  console.log(isElectric);
+
   return (
     <div className="p-8">
       <form
@@ -142,7 +161,7 @@ const AddCar = () => {
               >
                 <input
                   type="radio"
-                  value={`${isElectric}`} // Set the value for "Yes"
+                  value={`true`} // Set the value for "Yes"
                   {...register('isElectric', {
                     required: 'Please select if the car is electric',
                   })}
@@ -239,10 +258,11 @@ const AddCar = () => {
         </div>
 
         <button
+          disabled={loading}
           type="submit"
           className="btn-primary w-full py-2 rounded text-white"
         >
-          Add Car
+          {loading ? <Loading loadingName="white" /> : ' Add Car'}
         </button>
       </form>
     </div>

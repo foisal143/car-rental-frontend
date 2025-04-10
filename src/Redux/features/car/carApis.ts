@@ -10,7 +10,15 @@ const carApis = baseApi.injectEndpoints({
       }),
       providesTags: ['cars'],
     }),
+    createCar: builder.mutation({
+      query: carsInfo => ({
+        url: `/cars`,
+        method: 'POST',
+        body: carsInfo,
+      }),
+      invalidatesTags: ['cars'],
+    }),
   }),
 });
 
-export const { useGetCarsQuery } = carApis;
+export const { useGetCarsQuery, useCreateCarMutation } = carApis;
