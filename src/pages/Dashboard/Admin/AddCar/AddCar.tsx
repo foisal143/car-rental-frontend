@@ -1,8 +1,9 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useCreateCarMutation } from '../../../../Redux/features/car/carApis';
 import Loading from '../../../../utils/Loading';
+import { useNavigate } from 'react-router-dom';
 
 type CarFormData = {
   name: string;
@@ -27,6 +28,7 @@ const AddCar = () => {
   const [isElectric, setIsElectric] = useState(true);
   const [loading, setLoading] = useState(false);
   const [createCar, { data: carRes }] = useCreateCarMutation();
+  const navigate = useNavigate();
   //  add car eventhandler
   const onSubmit: SubmitHandler<CarFormData> = async data => {
     const price = parseFloat(data.pricePerHour);
@@ -42,7 +44,7 @@ const AddCar = () => {
     setLoading(false);
     reset();
   };
-  console.log(carRes);
+
   // image upload to imgbb
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoading(true);
@@ -69,6 +71,11 @@ const AddCar = () => {
     }
   };
 
+  useEffect(() => {
+    if (carRes) {
+      navigate('/dashboard/manage-cars');
+    }
+  }, [carRes, navigate]);
   return (
     <div className="p-8">
       <form

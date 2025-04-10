@@ -1,7 +1,39 @@
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { TCar } from '../../../interface/cars';
+import { useDeleteCarMutation } from '../../../Redux/features/car/carApis';
+import 'sweetalert2/src/sweetalert2.scss';
+import Swal from 'sweetalert2';
+import { useEffect } from 'react';
 
 const ManageCarsRow = ({ car }: { car: TCar }) => {
+  const [deleteCar, { data: deleteInfo }] = useDeleteCarMutation();
+  const handlerDeleteCar = (id: string) => {
+    console.log(id);
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then(result => {
+      if (result.isConfirmed) {
+        deleteCar(id);
+      }
+    });
+  };
+
+  useEffect(() => {
+    if (deleteInfo?.success) {
+      Swal.fire({
+        title: 'Deleted!',
+        text: 'Your file has been deleted.',
+        icon: 'success',
+      });
+    }
+  }, [deleteInfo]);
   return (
     <tr>
       <td>
@@ -27,7 +59,10 @@ const ManageCarsRow = ({ car }: { car: TCar }) => {
         <button className="btn-secondary">
           <FaEdit />{' '}
         </button>
-        <button className="btn-primary">
+        <button
+          onClick={() => handlerDeleteCar(car?._id)}
+          className="btn-primary"
+        >
           <FaTrash />{' '}
         </button>
       </td>
